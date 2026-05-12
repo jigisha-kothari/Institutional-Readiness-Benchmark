@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kendra — Growth & Scalability Benchmark</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a1628;
+  color: #e8e0d0;
+  padding: 48px 24px;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header {
+  border-bottom: 1px solid #c9a84c;
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.company {
+  font-weight: 600;
+  font-size: 13px;
+  color: #c9a84c;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 11px;
+  color: #7a8ba8;
+  letter-spacing: 0.04em;
+}
+
+.doc-label {
+  text-align: right;
+  font-size: 11px;
+  color: #7a8ba8;
+  letter-spacing: 0.04em;
+}
+
+.title-block {
+  margin-bottom: 40px;
+}
+
+.title-block h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.title-block h1 span {
+  color: #c9a84c;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #7a8ba8;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.intro {
+  background: rgba(201,168,76,0.08);
+  border-left: 3px solid #c9a84c;
+  padding: 18px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 36px;
+  font-size: 13px;
+  color: #b8c8d8;
+  line-height: 1.8;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #c9a84c;
+  color: #0a1628;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.checklist li {
+  display: flex;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.checklist li:hover {
+  background: rgba(201,168,76,0.06);
+}
+
+.checklist li.checked {
+  background: rgba(201,168,76,0.08);
+  border-color: rgba(201,168,76,0.25);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #3a5070;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checklist li.checked .checkbox {
+  background: #c9a84c;
+  border-color: #c9a84c;
+}
+
+.item-text {
+  font-size: 13px;
+  color: #c8d4e0;
+  line-height: 1.55;
+}
+
+.score-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(201,168,76,0.3);
+}
+
+.score-title {
+  font-size: 13px;
+  color: #c9a84c;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.score-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.score-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #c9a84c;
+}
+
+.score-total {
+  font-size: 20px;
+  color: #3a5070;
+}
+
+.score-label {
+  font-size: 13px;
+  color: #7a8ba8;
+}
+
+.score-bands {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.band {
+  padding: 14px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.band strong {
+  color: #ffffff;
+}
+
+.band-high {
+  background: rgba(46,160,100,0.08);
+}
+
+.band-mid {
+  background: rgba(201,168,76,0.08);
+}
+
+.band-low {
+  background: rgba(200,60,60,0.08);
+}
+
+.micro-cta {
+  margin-top: 36px;
+  margin-bottom: -12px;
+  font-size: 13px;
+  color: #aab8c7;
+  line-height: 1.7;
+}
+
+.cta {
+  margin-top: 36px;
+  padding: 24px 28px;
+  background: rgba(201,168,76,0.07);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.cta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.cta p {
+  font-size: 12px;
+  color: #7a8ba8;
+}
+
+.cta-btn {
+  background: #c9a84c;
+  color: #0a1628;
+  padding: 11px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #3a5070;
+  line-height: 1.6;
+}
+
+.footer-right {
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="header">
+  <div>
+    <div class="company">Kendra International Ltd</div>
+    <div class="tagline">
+      Scale Revenue · Reduce Founder Dependency · Build Operational Leverage
+    </div>
+  </div>
+
+  <div class="doc-label">
+    Growth & Scalability Benchmark<br>
+    Confidential
+  </div>
+</div>
+
+<div class="title-block">
+  <h1>Is your business <span>ready to scale sustainably?</span></h1>
+
+  <div class="subtitle">
+    A short benchmark designed to help growing businesses identify operational bottlenecks, scalability gaps, and founder dependency risks.
+  </div>
+</div>
+
+<div class="intro">
+  As businesses grow, operational complexity often increases faster than expected.
+
+  <br><br>
+
+  This benchmark is designed to help founder-led businesses identify common scalability constraints before they begin materially impacting growth, delivery, or visibility.
+
+  <br><br>
+
+  Most businesses score between 4–7.
+</div>
+
+<div class="section">
+
+<div class="section-header">
+<div class="section-number">1</div>
+<div class="section-title">Growth Visibility</div>
+</div>
+
+<ul class="checklist">
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+We have a repeatable lead generation process that does not rely entirely on referrals.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+We can forecast future revenue with reasonable confidence.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+Our ideal client profile and target market are clearly defined.
+</div>
+</li>
+
+</ul>
+</div>
+
+<div class="section">
+
+<div class="section-header">
+<div class="section-number">2</div>
+<div class="section-title">Founder Dependency</div>
+</div>
+
+<ul class="checklist">
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+The business can continue operating smoothly without daily founder involvement.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+Operational knowledge is documented and transferable across the team.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+Client relationships are not dependent on a single individual.
+</div>
+</li>
+
+</ul>
+</div>
+
+<div class="section">
+
+<div class="section-header">
+<div class="section-number">3</div>
+<div class="section-title">Systems & Operations</div>
+</div>
+
+<ul class="checklist">
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+Core systems and workflows are integrated rather than fragmented across tools.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+Operational reporting provides clear visibility into business performance.
+</div>
+</li>
+
+<li onclick="toggle(this)">
+<div class="checkbox"></div>
+<div class="item-text">
+The business can scale delivery without proportionally increasing operational strain.
+</div>
+</li>
+
+</ul>
+</div>
+
+<div class="score-section">
+
+<div class="score-title">Your Score</div>
+
+<div class="score-counter">
+<div class="score-number" id="score">0</div>
+<div class="score-total">/ 9</div>
+<div class="score-label">completed</div>
+</div>
+
+<div class="score-bands">
+
+<div class="band band-high">
+<strong>7–9:</strong>
+Strong operational foundation with good scalability potential.
+</div>
+
+<div class="band band-mid">
+<strong>4–6:</strong>
+Growth is progressing, though operational gaps may begin limiting efficiency and scalability over time.
+</div>
+
+<div class="band band-low">
+<strong>0–3:</strong>
+Founder dependency and operational bottlenecks are likely restricting scalability and long-term growth visibility.
+</div>
+
+</div>
+</div>
+
+<div class="micro-cta">
+There’s also an option below to request a brief benchmark review based on your responses.
+</div>
+
+<div class="cta">
+
+<div>
+<h3>Request a brief benchmark review.</h3>
+<p>
+Optional follow-up with a few practical observations based on your responses.
+</p>
+</div>
+
+<a
+href="#"
+class="cta-btn"
+onclick="sendBenchmarkEmail()"
+>
+Request Brief Review
+</a>
+
+</div>
+
+<div class="footer">
+
+<div>
+Kendra International Ltd · Twickenham, UK<br>
+sanjay.swarup@kendra-intl.com
+</div>
+
+<div class="footer-right">
+www.kendra-intl.com
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggle(el) {
+  el.classList.toggle('checked');
+  updateScore();
+}
+
+function updateScore() {
+  const checked = document.querySelectorAll('.checklist li.checked').length;
+  document.getElementById('score').textContent = checked;
+}
+
+function sendBenchmarkEmail() {
+
+  const score = document.getElementById('score').textContent;
+
+  const subject = encodeURIComponent(
+    "Benchmark Review Request"
+  );
+
+  const body = encodeURIComponent(
+`Hi Sanjay,
+
+I've completed the Growth & Scalability Benchmark and would be interested in receiving a brief benchmark review.
+
+My score: ${score}/9
+
+Company:
+Website:
+
+Additional context:
+
+Thanks`
+  );
+
+  window.location.href =
+    `mailto:sanjay.swarup@kendra-intl.com` +
+    `?cc=j.kothari@kendra-intl.com` +
+    `&subject=${subject}` +
+    `&body=${body}`;
+}
+
+</script>
+
+</body>
+</html>
